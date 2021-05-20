@@ -1,4 +1,4 @@
-
+//@sayan
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +9,7 @@
 
     <style>
       input {
-        width: 50px;
+        width: 40px;
       }
       #time {
         font-weight: bold;
@@ -19,9 +19,9 @@
   <body onload="timer()">
     <div id="time">Current Time : <span id="gmt"></span></div>
     <br />
-    <h1 style="font-family: sans-serif">Future Time to compare with</h1>
+    <h1 style="font-family: sans-serif">Time to be compared with</h1>
     <p>
-      <strong>After inputing the value take mouse out of the input box </strong>
+      <strong>After giving input please take the mouse out of the input box </strong>
     </p>
     <div class="date_time">
       <span>hour </span><input type="text" maxlength="2" id="hour" /> &nbsp;
@@ -32,12 +32,13 @@
     <script type="text/javascript">
       function timer() {
         var t;
+        
         var time = new Date();
         document.querySelector("span").innerHTML = time.toString();
 
-        h = time.getHours();
-        m = time.getMinutes();
-        s = time.getSeconds();
+        hour = time.getHours();
+        min = time.getMinutes();
+        sec = time.getSeconds();
         document.querySelector(".date_time").addEventListener(
           "mouseout",
           function () {
@@ -47,9 +48,9 @@
 
             if (
               // past time
-              h_d < h ||
-              (h_d == h && m_d < m) ||
-              (h_d == h && m_d == m && s_d < s)
+              h_d < hour ||
+              (h_d == hour && m_d < min) ||
+              (h_d == hour && m_d == min && s_d < sec)
             ) {
               document.querySelector("#gmt").style.color = "red";
               clearTimeout(t);
@@ -61,7 +62,7 @@
         h_d = parseInt(document.querySelector("#hour").value);
         m_d = parseInt(document.querySelector("#minute").value);
         s_d = parseInt(document.querySelector("#second").value);
-        if (h_d == h && m_d == m && s_d == s) {
+        if (h_d == hour && m_d == min && s_d == sec) {
           document.querySelector("#gmt").style.color = "red";
           return;
         }
