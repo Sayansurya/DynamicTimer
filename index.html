@@ -11,43 +11,52 @@
       input {
         width: 40px;
       }
+      #future{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(6, 27, 66);
+      }
       #time {
         font-weight: bold;
+        background-color:beige;
       }
     </style>
   </head>
-  <body onload="timer()">
+  <body onload="timercount()">
+    
     <div id="time">Current Time : <span id="gmt"></span></div>
     <br />
-    <h1 style="font-family: sans-serif">Time to be compared with</h1>
+    <h1 id="future" > Future time to be compared with :</h1>
     <p>
       <strong>After giving input please take the mouse out of the input box </strong>
     </p>
     <div class="date_time">
-      <span>hour </span><input type="text" maxlength="2" id="hour" /> &nbsp;
-      <span>minute </span><input type="text" maxlength="2" id="minute" /> &nbsp;
-      <span>seconds </span><input type="text" maxlength="2" id="second" />
+      <span>hour </span><input type="text" maxlength="2" id="hour1" /> &nbsp;
+      <span>minute </span><input type="text" maxlength="2" id="minute2" /> &nbsp;
+      <span>seconds </span><input type="text" maxlength="2" id="second3" />
+      
     </div>
 
     <script type="text/javascript">
-      function timer() {
+      function timercount() {
+
         var t;
-        
+
         var time = new Date();
         document.querySelector("span").innerHTML = time.toString();
-
+        sec = time.getSeconds();
         hour = time.getHours();
         min = time.getMinutes();
-        sec = time.getSeconds();
         document.querySelector(".date_time").addEventListener(
           "mouseout",
           function () {
-            h_d = parseInt(document.querySelector("#hour").value);
-            m_d = parseInt(document.querySelector("#minute").value);
-            s_d = parseInt(document.querySelector("#second").value);
-
+            h_d = parseInt(document.querySelector("#hour1").value);
+            m_d = parseInt(document.querySelector("#minute2").value);
+            s_d = parseInt(document.querySelector("#second3").value);
+            //if(h_d>12){
+              //h_d = h_d-12;
+            //}
             if (
-              // past time
+             
               h_d < hour ||
               (h_d == hour && m_d < min) ||
               (h_d == hour && m_d == min && s_d < sec)
@@ -58,16 +67,17 @@
           },
           true
         );
-        //@sayan
-        h_d = parseInt(document.querySelector("#hour").value);
-        m_d = parseInt(document.querySelector("#minute").value);
-        s_d = parseInt(document.querySelector("#second").value);
+
+        h_d = parseInt(document.querySelector("#hour1").value);
+        m_d = parseInt(document.querySelector("#minute2").value);
+        s_d = parseInt(document.querySelector("#second3").value);
+        
         if (h_d == hour && m_d == min && s_d == sec) {
           document.querySelector("#gmt").style.color = "red";
           return;
         }
 
-        t = setTimeout(timer, 500);
+        t = setTimeout(timercount, 500);
       }
     </script>
   </body>
